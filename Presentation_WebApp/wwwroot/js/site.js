@@ -109,6 +109,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 modal.innerHTML = html;
                 modal.classList.add('open');
+
+                modal.querySelectorAll('.image-previewer').forEach(previewer => {
+                    const fileInput = previewer.querySelector('input[type="file"]');
+                    const imagePreview = previewer.querySelector('.image-preview');
+
+                    previewer.addEventListener('click', () => fileInput.click());
+
+                    fileInput.addEventListener('change', ({ target: { files } }) => {
+                        const file = files[0];
+                        if (file) processImage(file, imagePreview, previewer, previewSize);
+                    });
+                });
+
                 const tagContainer = modal.querySelector('#selected-members-edit');
                 const raw = tagContainer?.dataset.preselected || '[]';
 
