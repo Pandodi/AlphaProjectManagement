@@ -1,0 +1,12 @@
+﻿@model IEnumerable<User>
+
+<div class="member-list-row">
+	@foreach (var user in Model)
+	{
+		if(user.Email != "admin@domain.com")
+		{
+			@await Html.PartialAsync("Partials/MemberList/_MemberListCard", user)
+		}
+
+	}
+</div>

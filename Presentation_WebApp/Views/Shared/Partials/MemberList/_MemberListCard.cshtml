@@ -1,0 +1,42 @@
+﻿@model User
+<div class="card-wrapper">
+    <div class="card-background-drop"></div>
+    <div class="member-card">
+        <i class="fa-solid fa-ellipsis toggle-member-dropdown"></i>
+        <div class="member-card-header">
+            <img src="@(Model.UserImage ?? "/images/alpha-fade-logo.svg")" alt="member Image">
+            <h4>@(Model.FirstName == null ? "No name specified" : $"{Model.FirstName} {Model.LastName}")</h4>
+        </div>
+
+        <div class="member-card-content">
+            <div class="member-job-title">
+                <p>@(Model.JobTitle == null ? "No job title specified" : $"{Model.JobTitle}")</p>
+            </div>
+            <p class="member-card-email">@Model.Email</p>
+            <p class="member-card-phone">@(Model.PhoneNumber == null ? "No number specified" : $"{Model.PhoneNumber}")</p>
+        </div>
+
+        <div class="member-card-footer stretch-content">
+            <p class="message-member-option">Message</p>
+        </div>
+    </div>
+
+    <div class="edit-member-dropdown">
+        <nav class="edit-member-nav">
+            <a href="#" data-type="modals" data-target="#edit-member" data-member-id="@Model.Id">
+                <i class="fa-solid fa-pen"></i>
+                <p>Edit</p>
+            </a>
+
+            <div class="or-line"></div>
+
+            <form method="post" asp-controller="Admin" asp-action="DeleteMember">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <button type="submit" class="btn delete-member-nav">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <p>Delete Member</p>
+                </button>
+            </form>
+        </nav>
+    </div>
+</div>

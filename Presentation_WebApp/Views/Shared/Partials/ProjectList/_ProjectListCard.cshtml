@@ -1,0 +1,56 @@
+﻿@model Project
+
+<div class="card-wrapper">
+    <div class="card-background-drop"></div>
+    <div class="project-card">
+        <div class="project-card-header stretch-content">
+            <div class="project-card-header-left">
+                <img src="@(Model.Image ?? "/images/alpha-fade-logo.svg")" alt="Project Image">
+                <div class="project-card-title">
+                    <h6>@Model.ProjectName</h6>
+                    <p>@Model.Client.ClientName</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-ellipsis toggle-dropdown"></i>
+        </div>
+
+        <div class="project-card-content">
+            <p>@Html.Raw(Model.Description)</p>
+        </div>
+
+        <div class="project-card-footer stretch-content">
+            <div class="project-time-left">
+                <i class="fa-solid fa-clock"></i>
+                <p>@Model.TimeLeft</p>
+            </div>
+            <div class="project-members-avatars">
+                @foreach (var member in Model.Members){
+                    <img src="@(member.UserImage ?? "/images/alpha-fade-logo.svg")" alt="Member Image" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="edit-project-dropdown">
+        <nav class="edit-project-nav">
+            <a href="#" data-type="modals" data-target="#edit-project" data-project-id="@Model.Id">
+                <i class="fa-solid fa-pen"></i>
+                <p>Edit</p>
+            </a>
+
+            <a href="#" data-type="modals" data-target="#select-members">
+                <i class="fa-solid fa-user-plus"></i>
+                <p>Add Member</p>
+            </a>
+
+            <div class="or-line"></div>
+
+            <form method="post" asp-controller="Projects" asp-action="DeleteProject">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <button type="submit" class="btn delete-project-nav">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <p>Delete Project</p>
+                </button>
+            </form>
+        </nav>
+    </div>
+</div>

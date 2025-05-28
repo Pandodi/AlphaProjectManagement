@@ -1,0 +1,131 @@
+﻿@model EditProjectViewModel
+
+
+
+<section id="edit-project" class="modals-edit">
+    <div class="modal-wrapper">
+        <div class="modal-header">
+            <h3>Edit Project</h3>
+            <button class="btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <form method="post" asp-controller="Projects" asp-action="EditProject" novalidate enctype="multipart/form-data">
+                <input asp-for="Id" type="hidden" readonly />
+
+                <div class="image-previewer square">
+                    <img src="" class="image-preview" />
+                    <input asp-for="ProjectImage" accept="image/*" class="hide" />
+                </div>
+
+                <div class="modal-content">
+                    <div class="modal-horizontal">
+                        <div class="form-group">
+                            <label asp-for="ProjectName" class="form-label"></label>
+                            <div class="field-group">
+                                <input asp-for="ProjectName" class="form-input" />
+                                <span asp-validation-for="ProjectName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientId" class="form-label"></label>
+                            <select asp-for="ClientId" asp-items="@Model?.ClientOptions" class="form-input">
+                                <option class="form-input" value="0" disabled selected>-- Select a Client --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label asp-for="Description" class="form-label"></label>
+                    <div class="wysiswyg">
+                        <textarea asp-for="Description" id="edit-project-description" class="hide"></textarea>
+                        <div id="edit-project-wysiwyg-editor" class="wysiwyg-editor"></div>
+                        <div id="edit-project-wysiwyg-toolbar" class="wysiwyg-toolbar">
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-align" value=""></button>
+                                <button class="ql-align" value="center"></button>
+                                <button class="ql-align" value="right"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="bullet"></button>
+                                <button class="ql-list" value="ordered"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link"></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-horizontal">
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="form-label"></label>
+                        <div class="field-group">
+                            <input asp-for="StartDate" class="form-input" />
+                            <span asp-validation-for="StartDate"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="form-label"></label>
+                        <div class="field-group">
+                            <input asp-for="EndDate" class="form-input" />
+                            <span asp-validation-for="EndDate"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-content">
+
+                    <div class="form-group">
+                        @{
+                            var jsMembers = Model!.CurrentMembers
+                            .Select(m => new
+                            {
+                                id = m.Id,
+                                fullName = m.FullName,
+                                userImage = m.UserImage
+                            });
+                            var jsonMembers = Json.Serialize(jsMembers);
+                        }
+                        <label class="form-label">Members</label>
+                        <div id="selected-members-edit" class="form-input form-tag-select" data-preselected='@jsonMembers'>
+                            <input type="text" id="edit-tag-search" class="form-tag-input" placeholder="Add Member(s)" />
+                            <label for="edit-tag-search" class="fa-solid fa-ellipsis"></label>
+                            <div id="edit-tag-search-results" class="search-results"></div>
+                        </div>
+                        <div id="hidden-selected-members-edit"></div>
+                        <span data-valmsg-for="SelectedMembersIds" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Budget" class="form-label"></label>
+                        <div class="field-group">
+                            <div class="form-input">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <input asp-for="Budget" class="custom-placeholder" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SelectedStatusId" class="form-label"></label>
+                        <select asp-for="SelectedStatusId" asp-items="@Model.StatusOptions" class="form-input">
+                            <option class="form-input" value="0" disabled selected>-- Select a Status --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                    </div>
+
+                </div>
+                <button class="btn btn-blue modal-submit">Update</button>
+            </form>
+        </div>
+    </div>
+
+</section>
+

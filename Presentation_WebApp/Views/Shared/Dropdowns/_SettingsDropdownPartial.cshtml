@@ -1,0 +1,32 @@
+﻿<div id="settings-container">
+    <button data-type="dropdown" data-target="#settings-dropdown" class="btn">
+        <i class="fa-solid fa-gear"></i>
+    </button>
+
+    <div id="settings-dropdown" class="dropdown hide">
+        <div class="dropdown-header">
+            <div class="account-header">
+                <img src="/images/avatar-header.svg" alt="Avatar Profile Picture">
+                <span>Ridah Omran</span>
+            </div>
+        </div>
+        <div class="dark-mode-container stretch-content">
+            <div class="dark-mode-toggle">
+                <i class="fa-solid fa-gear"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch" for="darkmode-switch">
+                <input type="checkbox" id="darkmode-switch">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="or-line"></div>
+
+        <button class="btn log-out-container">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <a asp-controller="Auth" asp-action="Logout">Log Out</a>
+        </button>
+    </div>
+</div>
+

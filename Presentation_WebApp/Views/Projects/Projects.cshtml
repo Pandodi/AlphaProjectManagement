@@ -1,0 +1,32 @@
+﻿@model ProjectsViewModel
+
+@{
+    ViewData["Title"] = "Projects";
+
+}
+
+<div class="projects-page">
+    <div class="project-header stretch-content">
+        <h2>Projects</h2>
+        <button type="button" class="btn btn-blue" data-type="modals" data-target="#add-project">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Project</span>
+        </button>
+    </div>
+
+    <div class="sort-projects-by-status">
+        <a asp-action="Projects" asp-route-statusId="" class="@(Model.SelectedStatusId == null ? "btn btn-blue" : "btn btn-outline")">All</a>
+        @foreach (var status in Model.StatusOptions)
+        {
+            var isActive = Model.SelectedStatusId == status.Id;
+            <a asp-action="Projects" asp-route-statusId="@status.Id" class="@(isActive ? "btn btn-blue" : "btn btn-outline")">@status.StatusName</a>
+        }
+    </div>
+
+
+
+     @await Html.PartialAsync("Partials/ProjectList/_ProjectList", Model.Projects)
+
+</div>
+
+<partial name="Modals/_AddProjectModalPartial" model="Model.AddProjectFormData"/>

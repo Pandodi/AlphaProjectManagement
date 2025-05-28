@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Client>
+
+<table>
+    <thead>
+        <tr>
+            <th class="client-name">Client Name</th>
+            <th class="client-email">Client Email</th>
+            <th class="client-actions"></th>
+        </tr>
+    </thead>
+
+    @foreach (var client in Model)
+    {
+        @await Html.PartialAsync("Partials/ClientList/_ClientListItem", client)
+    }
+</table>

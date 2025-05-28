@@ -1,0 +1,17 @@
+﻿@model Client
+
+<tbody>
+    <tr>
+        <td class="client-name">@Model.ClientName</td>
+        <td class="client-email">@Model.Email</td>
+        <td class="client-actions">
+            <i class="fa-solid fa-pen" data-type="modals" data-target="#edit-client" data-client-id="@Model.Id"></i>
+            <form method="post" asp-controller="Admin" asp-action="DeleteClient">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="btn">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </form>
+        </td>
+    </tr>
+</tbody>

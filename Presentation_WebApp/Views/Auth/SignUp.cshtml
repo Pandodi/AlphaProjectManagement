@@ -1,5 +1,89 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model SignUpViewModel
+
 @{
+    Layout = "_CenterWrapperLayout";
+    ViewData["Title"] = "Create Account";
 }
+
+<section id="sign-up" class="center-content">
+    <div class="form-card">
+        <div class="form-header">
+            <h1>Create Account</h1>
+        </div>
+
+        <form method="post" asp-controller="SignUp" asp-action="ExternalSignUp" novalidate>
+            <button class="btn btn-external">
+                <img src="/images/google-icon.svg" alt="Google Icon">
+                <span>Sign Up With Google</span>
+            </button>
+        </form>
+
+        <div class="or-line"><span>OR</span></div>
+
+		<form id="internal-signup" asp-controller="Auth" asp-action="SignUp" method="post" novalidate enctype="multipart/form-data">
+            <div class="form-content">
+
+                <div class="form-group">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <div class="field-group">
+						<input asp-for="FirstName" class="form-input"/>
+						<span asp-validation-for="FirstName"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="LastName" class ="form-label"></label>
+                    <div class="field-group">
+                        <input asp-for="LastName" class="form-input" />
+                        <span asp-validation-for="LastName"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label"></label>
+                    <div class="field-group">
+                        <input asp-for="Email" class="form-input" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label"></label>
+                    <div class="field-group">
+                        <div class="form-input stretch-content">
+                            <input asp-for ="Password" class="password-placeholder"/>
+                            <i class="fa-solid fa-eye"></i>
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <div class="field-group">
+                        <div class="form-input stretch-content">
+                            <input asp-for="ConfirmPassword" class="password-placeholder"/>
+                            <i class="fa-solid fa-eye"></i>
+                            <span asp-validation-for="ConfirmPassword"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-accept">
+                    <label class="form-checkbox">
+                        <input  asp-for="Terms" id="terms-checkbox" class="form-checkbox-input" type="checkbox" />
+                        <span class="form-checkbox-box"></span>
+                    </label>
+                    <label  for="terms-checkbox" class="form-label">I accept <a href="#">Terms and Conditions</a></label>
+                    <span></span>
+                </div>
+
+                <button type="submit" class="btn btn-blue">Create Account</button>
+            </div>
+            <div class="form-footer">Already have an account? <a asp-controller="Auth" asp-action="SignIn">Login</a></div>
+        </form>
+    </div>
+
+</section>
+
+@*/@await Html.PartialAsync("_ValidationScripts")*@

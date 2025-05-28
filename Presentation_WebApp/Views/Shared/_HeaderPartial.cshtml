@@ -1,0 +1,19 @@
+﻿<header class="stretch-content" id="header">
+    <form class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input class="search-input" type="search" placeholder="Search anything..." />
+    </form>
+
+    <div class="header-right-side">
+	    @await Html.PartialAsync("Dropdowns/_NotificationsDropdownPartial")
+        @await Html.PartialAsync("Dropdowns/_SettingsDropdownPartial")
+
+        <div class="vertical-line"></div>
+
+        <div id="avatar-container">
+            <button type="button" class="btn avatar-button">
+                <img src="/images/avatar-header.svg" alt="">
+            </button>
+        </div>
+    </div>
+</header>

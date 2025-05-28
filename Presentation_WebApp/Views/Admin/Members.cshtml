@@ -1,0 +1,21 @@
+﻿@model MembersViewModel
+
+@{
+    ViewData["Title"] = "Members";
+}
+
+<partial name="Modals/_AddMemberModal" model="Model.AddMemberForm" />
+<partial name="Modals/_EditMemberModal" model="Model.EditMemberForm" />
+
+<div class="members-page">
+    <div class="member-header stretch-content">
+        <h2>Members</h2>
+        <button type="button" class="btn btn-blue" data-type="modals" data-target="#add-member">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Member</span>
+        </button>
+    </div>
+		
+    @await Html.PartialAsync("Partials/MemberList/_MemberList", Model.Users)
+
+</div>

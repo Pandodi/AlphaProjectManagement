@@ -1,0 +1,28 @@
+﻿<aside id="sidebar">
+    <div class="header-logo">
+        <a href="@Url.Content("~/")">
+            <img src="/images/full-logo.svg" alt="Alpha Management Logo">
+        </a>
+        
+    </div>
+
+    <nav class="nav-links ">
+        <a asp-controller="Projects" asp-action="Projects" class="nav-link @(Context.Request.Path.Value!.StartsWith("/projects") ? " selected" : "")">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Projects</span>
+        </a>
+        @if (User.IsInRole("Admin")){
+            <a asp-controller="Admin" asp-action="Members" class="nav-link @(Context.Request.Path.Value!.StartsWith("/admin/members") ? " selected" : "")">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Team Members</span>
+            </a>
+
+            <a asp-controller="Admin" asp-action="Clients" class="nav-link @(Context.Request.Path.Value!.StartsWith("/admin/clients") ? " selected" : "")">
+                <i class="fa-solid fa-handshake"></i>
+                <span>Clients</span>
+            </a>
+        }
+
+
+    </nav>
+</aside>

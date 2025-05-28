@@ -1,0 +1,30 @@
+﻿@*@model List<MemberSearchResultViewModel>
+
+<section id="select-members" class="modals popup">
+    <div class="modal-wrapper">
+        <div class="modal-header">
+            <h3>Select Member(s)</h3>
+            <button class="btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="modal-content">
+            <ul class="list-group">
+                @foreach (var member in Model)
+                {
+                    if(member.FullName != " "){
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-2">
+                                <img class="rounded-circle member-list-img " src="@(member.UserImage ?? "/images/alpha-fade-logo.svg")" alt="Member Image" />
+								@member.FullName
+							</div>
+                            <button type="button" class="btn btn-blue" onclick="addMember('@member.Id', '@member.FullName', '@member.UserImage')">Add</button>
+                        </li>
+                    }
+
+                }
+            </ul>
+        </div>
+    </div>
+</section>*@

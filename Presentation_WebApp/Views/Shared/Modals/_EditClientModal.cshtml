@@ -1,0 +1,31 @@
+﻿@model EditClientViewModel
+
+<section id="edit-client" class="modals">
+    <div class="modal-wrapper">
+        
+        <div class="modal-header">
+            <h3>Edit Client</h3>
+            <button class="btn" >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form method="post" asp-controller="Admin" asp-action="EditClient" novalidate>
+            <input asp-for="Id" readonly type="hidden" value="@Model.Id" name="Id"/>
+
+            <div class="modal-content">
+                <label asp-for="ClientName" class="form-label"></label>
+                <input asp-for="ClientName" class="form-input"/>
+                <span asp-validation-for="ClientName"></span>
+
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-input" />
+                <span asp-validation-for="Email"></span>
+			</div>
+
+            <button type="submit" class="btn btn-blue modal-submit">Update</button>
+        </form>
+
+        
+    </div>
+</section>
